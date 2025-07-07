@@ -17,10 +17,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Create temp directory if it doesn't exist
-const tempDir = path.join(__dirname, 'temp');
+const tempDir = path.join('/tmp', 'temp'); // ✅ Writable on Vercel
+
 if (!fs.existsSync(tempDir)) {
   fs.mkdirSync(tempDir, { recursive: true });
 }
+
 
 app.use(cors());
 app.use(express.json());
